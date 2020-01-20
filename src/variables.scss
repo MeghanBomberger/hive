@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Anton|Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Anton|Monoton|Montserrat|Righteous&display=swap');
 
 $yellow-orange: rgb(255, 188, 66);
 $satin-gold: rgb(180, 124, 35);
@@ -11,6 +11,10 @@ $satin-gold: rgb(180, 124, 35);
 	font-family: 'Montserrat', sans-serif;
 }
 
+@mixin font-three {
+	font-family: 'Righteous', cursive;
+}
+
 @mixin hexagon {
 	clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
 }
@@ -19,4 +23,19 @@ $satin-gold: rgb(180, 124, 35);
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+@mixin fade {
+	transition: all ease 1s;
+}
+
+@mixin bee-font-style {
+	@include font-one;
+				color: white;
+				filter: drop-shadow(black 4px 4px 0)
+								drop-shadow($yellow-orange 1px 1px 0)
+								drop-shadow(black 1px 1px 0)
+								drop-shadow($yellow-orange 1px 1px 0)
+								drop-shadow(black -1px -1px 0)
+								drop-shadow($yellow-orange -1px -1px 0);
 }

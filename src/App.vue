@@ -3,8 +3,7 @@
     id="app"
     class="app"
   >
-    <!-- <Header/> -->
-    <!-- <NavBar/> -->
+    <Header/>
     <main>
       <router-view />
     </main>
@@ -12,16 +11,14 @@
 </template>
 
 <script>
-  // import Header from "@/components/header"
-  // import NavBar from "@/components/navbar"
+import Header from '@/components/header'
 
-  export default {
-    name: 'App',
-    // components: {
-    //   Header,
-    //   NavBar
-    // }
+export default {
+  name: 'App',
+  components: {
+    Header
   }
+}
 </script>
 
 <style lang="scss">
@@ -34,6 +31,7 @@
 
 .app {
   @include centered;
+  flex-direction: column;
   max-width: 100vw;
   min-height: 100vh;
   background: linear-gradient(rgba(30, 30, 30, 0.95), rgba(30, 30, 30, 0.85)), url('./assets/hexstairs.jpeg');

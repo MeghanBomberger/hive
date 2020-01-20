@@ -1,0 +1,136 @@
+<template>
+	<section class="user-wall">
+		<div class="user-header">
+			<UserCard
+				:key="userProfile.id"
+				:user="userProfile"
+				:isWall="true"
+				class="wall-image"
+			/>
+			<div class="user-info">
+				<h2>{{userProfile.username}}</h2>
+				<h3><span class="h-flip">&#x1f41d;</span> ( {{userProfile.name}} ) &#x1f41d;</h3>
+			</div>
+		</div>
+		<section class="posts-list-container">
+
+		</section>
+	</section>
+</template>
+
+<script>
+import * as axios from 'axios'
+
+import {API} from '../shared/config'
+
+import UserCard from '@/components/user-card'
+
+export default {
+	name: "UserWall",
+	props: {
+		userId: {
+			type: String,
+			default: "1"
+		},
+		username: {
+			type: String,
+			default: ""
+		},
+		name: {
+			type: String,
+			default: ""
+		},
+		image: {
+			type: String,
+			default: ""
+		}
+	},
+	data(){
+		return {
+			userErrorMessage: '',
+			userProfile: {
+				id: this.userId,
+				username: this.username,
+				name: this.name,
+				image: this.image
+			},
+			posts: []
+		}
+	},
+	components: {
+		UserCard
+	},
+	created(){
+		this.posts = []
+		this.fetchUserPosts()
+	},
+	methods: {
+		async fetchUserPosts(){
+			try {
+				const response = await axios.get(`${API}/users/${this.userProfile.id}/posts`)
+				this.posts = response.data
+				this.userErrorMessage = ''
+			} catch (error) {
+				this.userErrorMessage = error
+				this.userPostsList = []
+			}
+		}
+	}	
+}
+</script>
+
+<style lang="scss">
+@import '../variables.scss';
+
+.user-wall {
+	@include centered;
+	flex-direction: column;
+
+	.user-header {
+		@include centered;
+		flex-wrap: wrap;
+		width: 90vw;
+
+		.wall-image {
+			justify-self: flex-start;
+		}
+
+		.user-info {
+			@include centered;
+			flex-direction: column;
+			margin: 10px;
+
+			h2 {
+				@include bee-font-style;
+				font-size: 10vh;
+				line-height: 100%;
+				text-align: center;
+			}
+
+			h3 {
+				@include font-one;
+				color: $yellow-orange;
+				font-size: 4.5vh;
+				text-shadow: black 3px 3px 1px;
+				margin-top: 1vh;
+
+				.h-flip {
+					display: inline-block;
+					-webkit-transform: scaleX(1);
+					transform: scaleX(-1);
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 900px) {
+	.user-wall {
+		.user-header {
+			.user-info {
+				margin: 10px 10px 10px 10vw;
+			}
+		}
+	}
+}
+</style>
