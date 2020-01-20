@@ -1,5 +1,11 @@
 <template>
 	<section class="user-wall">
+		<router-link to='/users'>
+			<img
+				src="../assets/forward-button.svg"
+				class="arrow-button"
+			/>
+		</router-link>
 		<div class="user-header">
 			<UserCard
 				:key="userProfile.id"
@@ -85,6 +91,19 @@ export default {
 .user-wall {
 	@include centered;
 	flex-direction: column;
+
+	.arrow-button {
+		position: fixed;
+		top: 1vh;
+		left: 1vw;
+		height: 5vh;
+		transform: scaleX(-1);
+		filter: drop-shadow(black 3px 3px 5px);
+	}
+
+	.arrow-button:hover {
+		filter: drop-shadow(rgba(200, 200, 255, 0.75) 0 0 5px);
+	}
 
 	.user-header {
 		@include centered;

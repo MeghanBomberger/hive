@@ -105,4 +105,10 @@ export default {
 	flex-wrap: wrap;
 	padding-top: 7.5vh;
 }
+
+@media screen and (min-width: 1024px) {
+	.user-list-container {
+		padding: 10vh 8vw 10vh 8vw;
+	}
+}
 </style>
