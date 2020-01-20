@@ -19,7 +19,11 @@
 			</div>
 		</div>
 		<section class="posts-list-container">
-
+			<PostCard
+				v-for="post in posts"
+				:key="post.id"
+				:post="post"
+			/>
 		</section>
 	</section>
 </template>
@@ -30,6 +34,7 @@ import * as axios from 'axios'
 import {API} from '../shared/config'
 
 import UserCard from '@/components/user-card'
+import PostCard from '@/components/post-card'
 
 export default {
 	name: "UserWall",
@@ -64,7 +69,8 @@ export default {
 		}
 	},
 	components: {
-		UserCard
+		UserCard,
+		PostCard
 	},
 	created(){
 		this.posts = []
@@ -73,7 +79,7 @@ export default {
 	methods: {
 		async fetchUserPosts(){
 			try {
-				const response = await axios.get(`${API}/users/${this.userProfile.id}/posts`)
+				const response = await axios.get(`${API}/posts?userId=${this.userProfile.id}`)
 				this.posts = response.data
 				this.userErrorMessage = ''
 			} catch (error) {
@@ -109,6 +115,7 @@ export default {
 		@include centered;
 		flex-wrap: wrap;
 		width: 90vw;
+		margin-top: 6vh;
 
 		.wall-image {
 			justify-self: flex-start;
@@ -140,6 +147,10 @@ export default {
 				}
 			}
 		}
+	}
+
+	.posts-list-container {
+		margin-top: 5vh;
 	}
 }
 
