@@ -1,16 +1,17 @@
 <template>
 	<section>
-		<p>User List</p>
-		<p>MESSAGE:</p>
-		<p>{{message}}</p>
-		<p>USERS LIST:</p>
-		<p>{{usersList}}</p>
+		<UserCard
+			v-for="user in usersList"
+			:key="user.id"
+			:user="user"
+		/>
 	</section>
 </template>
 
 <script>
 import * as axios from 'axios'
 import {API} from '../shared/config'
+import UserCard from '@/components/user-card'
 
 export default {
 	name: "UserList",
@@ -19,6 +20,9 @@ export default {
 			message: '',
 			usersList: []
 		}
+	},
+	components: {
+		UserCard
 	},
 	created(){
 		this.$log.info('fetching users list data')
