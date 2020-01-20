@@ -5,13 +5,13 @@ import router from "./router"
 
 Vue.config.productionTip = false
 
-const isProduction = false //placeholder
+const isProduction = false //placeholder - needs to be replaced with conditional
 
 const options = { 
   isEnabled: true,
   logLevel: isProduction ? 'error' : 'debug',
   stringifyArguments: false,
-  showLogLevel: true,
+  showLogLevel: false,
   showMethodName: true,
   separator: '|',
   showConsoleColors: true
