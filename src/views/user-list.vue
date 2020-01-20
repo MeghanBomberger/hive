@@ -6,6 +6,9 @@
 
 <script>
 export default {
-	name: "UserList"
+	name: "UserList",
+	created(){
+		this.$log.info('fetching users list data')
+	}
 }
 </script>

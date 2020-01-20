@@ -11,7 +11,7 @@ const options = {
   isEnabled: true,
   logLevel: isProduction ? 'error' : 'debug',
   stringifyArguments: false,
-  showLogLevel: true,
+  showLogLevel: false,
   showMethodName: true,
   separator: '|',
   showConsoleColors: true
