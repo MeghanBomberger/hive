@@ -1,25 +1,22 @@
 <template>
   <div id="app">
-    <header>
-      <h1>hive</h1>
-    </header>
+    <Header/>
+    <NavBar/>
     <main>
-      <aside class="sidebar">
-
-      </aside>
-      <div class="content">
-
-      </div>
+      <router-view />
     </main>
   </div>
 </template>
 
 <script>
+  import Header from "@/components/header"
+  import NavBar from "@/components/navbar"
+
   export default {
-    data () {
-      return {
-        users: []
-      }
+    name: 'App',
+    components: {
+      Header,
+      NavBar
     }
   }
 </script>
