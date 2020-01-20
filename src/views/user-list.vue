@@ -3,18 +3,34 @@
 		<p v-if="usersListErrorMessage">
 			{{ usersListErrorMessage }}
 		</p>
-		<UserCard
+		<router-link
 			v-for="user in usersList"
 			:key="user.id"
-			:user="user"
-		/>
+			:to="{ 
+				name: 'user-wall',
+				params: { 
+					id: user.id,
+					username: user.username,
+					name: user.name,
+					image: user.image
+				}
+			}"
+		>
+			<UserCard
+				:key="user.id"
+				:user="user"
+			/>
+		</router-link>
 	</section>
 </template>
 
 <script>
 import * as axios from 'axios'
+
 import { API } from '../shared/config'
+
 import UserCard from '@/components/user-card'
+
 import ClementinaImg from '../assets/user-images/Clementina.jpeg'
 import ClementineImg from '../assets/user-images/Clementine.jpeg'
 import ChelseyImg from '../assets/user-images/Chelsey.jpeg'
@@ -87,5 +103,6 @@ export default {
 .user-list-container {
 	@include centered;
 	flex-wrap: wrap;
+	padding-top: 7.5vh;
 }
 </style>
