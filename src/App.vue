@@ -36,5 +36,8 @@ export default {
   min-height: 100vh;
   background: linear-gradient(rgba(30, 30, 30, 0.95), rgba(30, 30, 30, 0.85)), url('./assets/hexstairs.jpeg');
   background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 </style>
