@@ -1,7 +1,7 @@
 <template>
-	<div>
+	<section>
 		<p>User List</p>
-	</div>
+	</section>
 </template>
 
 <script>
