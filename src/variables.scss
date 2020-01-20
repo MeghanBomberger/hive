@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Anton|Montserrat&display=swap');
+
+$yellow-orange: rgb(255, 188, 66);
+$satin-gold: rgb(180, 124, 35);
+
+@mixin font-one {
+	font-family: 'Anton', sans-serif;
+}
+
+@mixin font-two {
+	font-family: 'Montserrat', sans-serif;
+}
+
+@mixin hexagon {
+	clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+
+@mixin centered {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
