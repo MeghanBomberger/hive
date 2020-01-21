@@ -100,6 +100,10 @@ export default {
 <style lang="scss">
 @import '../variables.scss';
 
+a {
+  text-decoration: none;
+}
+
 .user-list-container {
 	@include centered;
 	flex-wrap: wrap;
