@@ -1,6 +1,6 @@
 <template>
 	<section class="user-wall">
-		<router-link to='/users'>
+		<router-link to='/users' title="go back">
 			<img
 				src="../assets/forward-button.svg"
 				class="arrow-button"
