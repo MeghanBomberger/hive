@@ -1,6 +1,6 @@
 <template>
 	<section
-		v-bind:class="{odd: isOdd, 'user-card' : 'user-card'}"
+		class="user-card"
 		key="clonedUser.id"
 	>
 		<div
@@ -42,13 +42,7 @@ export default {
 		return {
 			clonedUser: { ...this.user },
 			hover: false,
-			clonedIsWall: this.isWall,
-			isOdd: false
-		}
-	},
-	created(){
-		if(this.clonedUser.id%2 === 1) {
-			this.isOdd = true
+			clonedIsWall: this.isWall
 		}
 	}
 }
@@ -98,17 +92,6 @@ export default {
 			height: 52.5vh;
 			width: calc(48vh);
 		}
-	}
-}
-
-@media screen and (max-width: 900px) {
-	.user-card.odd {
-		margin-left: -15vw;
-	}
-
-	.user-card {
-		margin-left: 30vw;
-		margin-bottom: -10vh;
 	}
 }
 </style>
