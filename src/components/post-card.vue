@@ -1,11 +1,34 @@
 <template>
 	<article class="post">
-		<h2>{{clonedPost.title}}</h2>
-		<p>{{clonedPost.body}}</p>
+		<section class="post-container">
+			<h2>{{clonedPost.title}}</h2>
+			<p>{{clonedPost.body}}</p>
+			<p
+				class="comment-toggle"
+				v-on:click="handleToggle"
+			>
+				{{isClosed ? '+' : '-'}}
+			</p>
+		</section>
+		<section
+			class="comments-list"
+			v-show="!isClosed"
+		>
+			<CommentCard
+				v-for="comment in comments"
+				:key="comment.id"
+				:comment="comment"
+			/>
+		</section>
 	</article>
 </template>
 
 <script>
+import * as axios from 'axios'
+
+import {API} from '../shared/config'
+import CommentCard from './comment-card'
+
 export default {
 	name: "PostCard",
 	props: {
@@ -16,7 +39,31 @@ export default {
 	},
 	data(){
 		return {
-			clonedPost: this.post
+			clonedPost: this.post,
+			isClosed: true,
+			comments: [],
+			commentsErrorMessage: ''
+		}
+	},
+	components: {
+		CommentCard
+	},
+	created(){
+		this.fetchComments()
+	},
+	methods: {
+		handleToggle(){
+			this.isClosed = !this.isClosed
+		},
+		async fetchComments(){
+			try {
+				const response = await axios.get(`${API}/comments?postId=${this.clonedPost.id}`)
+				this.comments = response.data
+				this.commentsErrorMessage = ""
+			} catch (error) {
+				this.commentsErrorMessage = error
+				this.comments = []
+			}
 		}
 	}
 }
@@ -26,6 +73,7 @@ export default {
 @import '../variables.scss';
 
 .post {
+	position: relative;
 	margin-bottom: 20px;
 	padding: 25px 50px 25px 50px;
 	width: 70vw;
@@ -42,6 +90,20 @@ export default {
 	p {
 		@include font-two;
 		color: white;
+	}
+
+	.comment-toggle {
+		position: absolute;
+		top: -17px;
+		right: 18px;
+		@include font-one;
+		font-size: 9vh;
+		color: black;
+		cursor: pointer;
+	}
+
+	.comments-list {
+		padding: 30px 0 0 30px;
 	}
 }
 
