@@ -111,4 +111,10 @@ export default {
 		padding: 10vh 8vw 10vh 8vw;
 	}
 }
+
+@media screen and (max-width: 900px) {
+	.user-list-container {
+		width: 90vw;
+	}
+}
 </style>

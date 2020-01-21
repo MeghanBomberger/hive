@@ -1,6 +1,6 @@
 <template>
 	<section
-		class='user-card'
+		class="user-card"
 		key="clonedUser.id"
 	>
 		<div
